@@ -1,6 +1,3 @@
-# IoT
- IoT Projects
-
 # Adafruit Feather M0 RFM69HCW
 RFM Server which receives messages over 433 MHz and sends them to MQTT Server.
 CO2 Sensor which sends messages to the RFM69 Server over 433 MHz.
