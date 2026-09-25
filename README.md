@@ -16,3 +16,6 @@ Lightswitch connected to an IO Ports to send switch commands via UDP to a server
 # MKR GSM
 Send Alarm SMS received over MQTT
 Send Alarm SMS at mains power outage or if battery level is low.
+
+# ESPHome
+ESP32 ESP-IDF external component to receive Art-Net DMX data over Wi-Fi and output DMX512 using an RS-485 transceiver. See [ESPHome/README.md](ESPHome/README.md) for setup, wiring, and configuration.
