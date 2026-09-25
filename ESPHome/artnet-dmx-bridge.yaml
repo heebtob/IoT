@@ -1,0 +1,36 @@
+esphome:
+  name: artnet-dmx-bridge
+  friendly_name: Art-Net DMX Bridge
+
+esp32:
+  board: esp32dev
+  framework:
+    type: esp-idf
+
+external_components:
+  - source:
+      type: git
+      url: https://github.com/heebtob/IoT
+      ref: main
+      path: ESPHome/components
+    components: [artnet_dmx]
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+api:
+
+ota:
+  - platform: esphome
+
+logger:
+  baud_rate: 0
+
+artnet_dmx:
+  id: dmx_bridge
+  uart_num: 1
+  tx_pin: GPIO17
+  de_pin: GPIO16
+  universe: 0
+  channels: 512
