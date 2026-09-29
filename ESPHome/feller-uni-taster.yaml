@@ -1,0 +1,123 @@
+external_components:
+  - source:
+      type: git
+      url: https://github.com/heebtob/IoT
+      ref: main
+      path: ESPHome/components
+    components: [feller_uni_taster]
+
+esphome:
+  name: feller-uni-taster
+  friendly_name: Feller UNI-Taster
+
+esp32:
+  board: esp32dev
+  framework:
+    type: esp-idf
+
+wifi:
+  ap:
+    ssid: Feller UNI-Taster
+    password: "feller-setup"
+
+captive_portal:
+
+logger:
+
+api:
+
+ota:
+  - platform: esphome
+
+uart:
+  id: uart_feller
+  tx_pin: GPIO17
+  rx_pin: GPIO16
+  baud_rate: 9600
+  data_bits: 8
+  parity: NONE
+  stop_bits: 1
+
+feller_uni_taster:
+  id: taster
+  uart_id: uart_feller
+  baud_rate: 9600
+  byte_timeout: 0
+  button_indication: true
+  system_state_indication: true
+  reset_on_boot: true
+  poll_interval: 0s
+
+binary_sensor:
+  - platform: feller_uni_taster
+    name: Button 1
+    feller_uni_taster_id: taster
+    index: 1
+  - platform: feller_uni_taster
+    name: Button 2
+    feller_uni_taster_id: taster
+    index: 2
+  - platform: feller_uni_taster
+    name: Button 3
+    feller_uni_taster_id: taster
+    index: 3
+  - platform: feller_uni_taster
+    name: Button 4
+    feller_uni_taster_id: taster
+    index: 4
+  - platform: feller_uni_taster
+    name: Button 5
+    feller_uni_taster_id: taster
+    index: 5
+  - platform: feller_uni_taster
+    name: Button 6
+    feller_uni_taster_id: taster
+    index: 6
+  - platform: feller_uni_taster
+    name: Button 7
+    feller_uni_taster_id: taster
+    index: 7
+  - platform: feller_uni_taster
+    name: Button 8
+    feller_uni_taster_id: taster
+    index: 8
+
+light:
+  - platform: feller_uni_taster
+    name: LED 1
+    feller_uni_taster_id: taster
+    index: 1
+  - platform: feller_uni_taster
+    name: LED 2
+    feller_uni_taster_id: taster
+    index: 2
+  - platform: feller_uni_taster
+    name: LED 3
+    feller_uni_taster_id: taster
+    index: 3
+  - platform: feller_uni_taster
+    name: LED 4
+    feller_uni_taster_id: taster
+    index: 4
+  - platform: feller_uni_taster
+    name: LED 5
+    feller_uni_taster_id: taster
+    index: 5
+  - platform: feller_uni_taster
+    name: LED 6
+    feller_uni_taster_id: taster
+    index: 6
+  - platform: feller_uni_taster
+    name: LED 7
+    feller_uni_taster_id: taster
+    index: 7
+  - platform: feller_uni_taster
+    name: LED 8
+    feller_uni_taster_id: taster
+    index: 8
+
+number:
+  - platform: feller_uni_taster
+    name: LED Brightness
+    feller_uni_taster_id: taster
+    restore_value: true

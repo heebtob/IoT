@@ -1,4 +1,9 @@
-# ESPHome Art-Net DMX bridge
+# ESPHome external components
+
+- [Art-Net DMX bridge](#art-net-dmx-bridge) — ESP32 Art-Net receiver with DMX512 output.
+- [Feller UNI-Taster](components/feller_uni_taster/README.md) — button, RGB LED and global brightness entities. Its complete ESP32 example is [`feller-uni-taster.yaml`](feller-uni-taster.yaml).
+
+## Art-Net DMX bridge
 
 `artnet_dmx` is an ESPHome external component for ESP32 devices using the ESP-IDF framework. It receives Art-Net DMX data over UDP and continuously outputs DMX512 on a UART connected to an RS-485 transceiver. It also answers ArtPoll discovery requests and announces itself when the network comes up. It does not create ESPHome light or output entities.
 
