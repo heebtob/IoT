@@ -19,3 +19,16 @@ Send Alarm SMS at mains power outage or if battery level is low.
 
 # ESPHome
 ESP32 ESP-IDF external component to receive Art-Net DMX data over Wi-Fi and output DMX512 using an RS-485 transceiver. See [ESPHome/README.md](ESPHome/README.md) for setup, wiring, and configuration.
+
+# Feller UNI-Taster
+ESPHome external component for Feller EDIZIOdue colore UNI-Taster 392x: button sensors, tri-colour LED lights with hardware blinking, and global brightness. See [ESPHome/components/feller_uni_taster/README.md](ESPHome/components/feller_uni_taster/README.md) and the [complete ESP32 example](ESPHome/feller-uni-taster.yaml) for wiring and setup. Paste this source into ESPHome Builder:
+
+```yaml
+external_components:
+  - source:
+      type: git
+      url: https://github.com/heebtob/IoT
+      ref: main
+      path: ESPHome/components
+    components: [feller_uni_taster]
+```
