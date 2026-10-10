@@ -231,6 +231,14 @@ void ArtNetDMX::handle_artdmx_(const uint8_t *data, size_t length) {
   this->have_received_packet_ = true;
   this->blackout_applied_ = false;
   ESP_LOGV(TAG, "Accepted ArtDmx packet with %u slots", static_cast<unsigned>(payload_length));
+  static int last_ch1 = -1;
+  
+  int ch1 = this->dmx_[1];
+  
+  if (ch1 != last_ch1) {
+    ESP_LOGI(TAG, "ArtNet empfangen: DMX CH1 = %d", ch1);
+    last_ch1 = ch1;
+  }
 }
 
 bool ArtNetDMX::data_is_recent_(uint64_t now_ms) const {
