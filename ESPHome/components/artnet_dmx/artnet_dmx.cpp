@@ -58,7 +58,7 @@ void ArtNetDMX::setup() {
 
 bool ArtNetDMX::setup_uart_() {
   const auto uart = static_cast<uart_port_t>(this->uart_num_);
-  esp_err_t err = uart_driver_install(uart, 0, 0, 0, nullptr, 0);
+  esp_err_t err = uart_driver_install(uart, 256, 0, 0, nullptr, 0);
   if (err != ESP_OK) {
     ESP_LOGE(TAG, "uart_driver_install failed: %s", esp_err_to_name(err));
     return false;
