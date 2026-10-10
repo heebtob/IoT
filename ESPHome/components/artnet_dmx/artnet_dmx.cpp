@@ -283,10 +283,13 @@ void ArtNetDMX::send_dmx_frame_() {
   if (this->de_pin_ != nullptr) {
     this->de_pin_->digital_write(false);
   }
+
   if (err != ESP_OK) {
-    ESP_LOGE(TAG, "DMX UART transmission failed: %s", esp_err_to_name(err));
-    this->mark_failed();
+    ESP_LOGE(TAG, "DMX UART transmission failed: %s",
+             esp_err_to_name(err));
+    this->mark_failed(LOG_STR("DMX-UART-Uebertragung fehlgeschlagen"));
   }
+
 }
 
 void ArtNetDMX::queue_poll_reply_(const sockaddr_in *poller, bool send_unicast) {
