@@ -165,10 +165,44 @@ void ArtNetDMX::receive_packets_() {
       }
       break;
     }
-    if (length == 0 || source.sin_family != AF_INET) {
+
+    if (length == 0) {
       continue;
     }
-    this->handle_packet_(packet, static_cast<size_t>(length), source);
+    
+    // Diagnose: UDP-Empfang vor Art-Net-Filterung
+    static uint64_t last_log_us = 0;
+    static uint32_t packet_count = 0;
+    
+    packet_count++;
+    uint64_t now = now_us_();
+    
+    if (last_log_us == 0 ||
+        now - last_log_us >= 1000000) {
+    
+      ESP_LOGI(TAG,
+        "UDP RX: Pakete=%u, Bytes=%d, Family=%d, Opcode=%02X %02X",
+        static_cast<unsigned>(packet_count),
+        static_cast<int>(length),
+        static_cast<int>(source.sin_family),
+        length >= 10 ? packet[8] : 0,
+        length >= 10 ? packet[9] : 0
+      );
+    
+      last_log_us = now;
+      packet_count = 0;
+    }
+    
+    if (source.sin_family != AF_INET) {
+      continue;
+    }
+    
+    this->handle_packet_(
+      packet,
+      static_cast<size_t>(length),
+      source
+    );
+
   }
 }
 
