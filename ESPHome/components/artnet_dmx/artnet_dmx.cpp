@@ -49,15 +49,16 @@ void ArtNetDMX::setup() {
   if (this->uart_num_ == UART_NUM_0) {
     ESP_LOGW(TAG, "UART0 is commonly used by the ESPHome logger; ensure it is not shared");
   }
-if (!this->setup_uart_()) {
-  this->mark_failed(LOG_STR("UART-Setup fehlgeschlagen"));
-  return;
-}
-
-if (!this->setup_socket_()) {
-  this->mark_failed(LOG_STR("UDP-Socket-Setup fehlgeschlagen"));
-  return;
-}
+  if (!this->setup_uart_()) {
+    this->mark_failed(LOG_STR("UART-Setup fehlgeschlagen"));
+    return;
+  }
+  
+  if (!this->setup_socket_()) {
+    this->mark_failed(LOG_STR("UDP-Socket-Setup fehlgeschlagen"));
+    return;
+  }
+  ESP_LOGI(TAG, "ArtNet UDP Diagnose V2 aktiv");
   ESP_LOGI(TAG, "Art-Net listener ready on UDP port %u", static_cast<unsigned>(this->port_));
 }
 
