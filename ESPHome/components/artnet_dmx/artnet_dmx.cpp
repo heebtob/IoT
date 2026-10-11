@@ -217,7 +217,7 @@ void ArtNetDMX::handle_packet_(const uint8_t *data, size_t length, const sockadd
     }
     return;
   }
-  if (data[8] == ARTNET_OP_DMX && data[9] == 0x50) {
+  if (data[8] == 0x00 && data[9] == ARTNET_OP_DMX) {
     this->handle_artdmx_(data, length);
   }
 }
